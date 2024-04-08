@@ -7,13 +7,12 @@ const NotificationComponent = () => {
 
   useEffect(() => {
 
-    if ("Notification" in window && Notification.permission !== "granted" && Notification.permission !== "denied") {
       Notification.requestPermission().then(permission => {
         if (permission === "granted") {
           console.log("Notification permission granted");
         }
       });
-    }
+    
   }, []);
 
   const handleNotification = () => {
