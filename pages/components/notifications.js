@@ -7,7 +7,6 @@ const NotificationComponent = () => {
 
   useEffect(() => {
 
-    navigator.serviceWorker.getRegistrations();
     if ("Notification" in window && Notification.permission !== "granted" && Notification.permission !== "denied") {
       Notification.requestPermission().then(permission => {
         if (permission === "granted") {
@@ -32,7 +31,7 @@ const NotificationComponent = () => {
   };
 
   const showNotification = () => {
-    new window.Notification("DiGiLABS", {
+    new Notification("DiGiLABS", {
       body: `${mssg}`,
       icon: "/icon.png"
     });
@@ -49,7 +48,7 @@ const NotificationComponent = () => {
     {!mssgBox &&
     <div className="h-screen grid grid-rows-3 justify-items-center align-middle">
       <div className='flex flex-col items-center py-10'>
-      <h1 className='text-white'>Lorem Ipsum...</h1>
+      <h1 className='text-white text-2xl font-semibold'>Lorem Ipsum...</h1>
       <h3 className='text-white'>Lorem ipsum dolor sit amet.</h3>
       </div>
       <div className='-m-12'><img src="/Bell.png" alt='Bell'/></div>
