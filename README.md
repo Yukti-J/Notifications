@@ -4,8 +4,7 @@
 Send Notifications is a simple web application that allows users to send custom notifications in just one click. With this application, users can easily send notifications with personalized messages to their devices.
 
 ## Deployed Link 
-[https://notifications-nine-smoky.vercel.app/
-](https://notifications-nine-smoky.vercel.app/)
+[https://yj-notifications.netlify.app/](https://yj-notifications.netlify.app/)
 
 ## Getting Started
 To get started with Send Notifications, follow these steps:
