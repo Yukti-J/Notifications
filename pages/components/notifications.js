@@ -34,6 +34,7 @@ const NotificationComponent = () => {
   };
 
   const showNotification = () => {
+    console.log('Show Notifications')
     new Notification("DiGiLABS", {
       body: `${mssg}`,
       icon: "/icon.png"
