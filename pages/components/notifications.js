@@ -2,24 +2,28 @@ import React, { useEffect, useState } from 'react';
 
 const NotificationComponent = () => {
 
-  const [mssg, setMssg] = useState("This is a notification")
+  const [mssg, setMssg] = useState("This is a notification");
   const [mssgBox, setMssgBox] = useState(false)
 
   useEffect(() => {
-
-      Notification.requestPermission().then(permission => {
-        if (permission === "granted") {
-          console.log("Notification permission granted");
-        }
-      });
-    
+    // Check for service worker support
+    if ('serviceWorker' in navigator) {
+      // Register the service worker
+      navigator.serviceWorker.register('/sw.js')
+        .then(registration => {
+          console.log('Service Worker registered successfully:', registration);
+        })
+        .catch(error => {
+          console.error('Service Worker registration failed:', error);
+        });
+    }
   }, []);
 
   const handleNotification = () => {
     if (!("Notification" in window)) {
       alert("This browser does not support system notifications");
     } else if (Notification.permission === "granted") {
-      showNotification();
+        showNotification();
     } else if (Notification.permission !== "denied") {
       Notification.requestPermission().then(permission => {
         if (permission === "granted") {
@@ -41,10 +45,9 @@ const NotificationComponent = () => {
     showNotification();
   }
 
-
   return (
     <>
-    {!mssgBox &&
+      {!mssgBox &&
     <div className="h-screen grid grid-rows-3 justify-items-center align-middle">
       <div className='flex flex-col items-center py-10'>
       <h1 className='text-white text-2xl font-semibold'>Lorem Ipsum...</h1>
@@ -74,4 +77,3 @@ const NotificationComponent = () => {
 }
 
 export default NotificationComponent;
-     
