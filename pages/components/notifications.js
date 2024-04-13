@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 const NotificationComponent = () => {
 
   const [mssg, setMssg] = useState("This is a notification");
+  const [title, setTitle] = useState("DiGiLABS");
   const [mssgBox, setMssgBox] = useState(false)
 
   useEffect(() => {
@@ -35,7 +36,7 @@ const NotificationComponent = () => {
 
   const showNotification = () => {
     console.log('Show Notifications')
-    new Notification("DiGiLABS", {
+    new Notification(`${title}`, {
       body: `${mssg}`,
       icon: "/icon.png"
     });
@@ -51,24 +52,26 @@ const NotificationComponent = () => {
       {!mssgBox &&
     <div className="h-screen grid grid-rows-3 justify-items-center align-middle">
       <div className='flex flex-col items-center py-10'>
-      <h1 className='text-white text-2xl font-semibold'>Lorem Ipsum...</h1>
-      <h3 className='text-white'>Lorem ipsum dolor sit amet.</h3>
+      <h1 className='text-white text-2xl font-semibold font'>Lorem Ipsum...</h1>
+      <h3 className='text-white font2'>Lorem ipsum dolor sit amet.</h3>
       </div>
       <div className='-m-12'><img src="/Bell.png" alt='Bell'/></div>
       <div className='grid items-center'>
-      <button onClick={handleNotification} className="nof-btn w-80 py-2 px-4 text-white rounded-md ">
+      <button onClick={handleNotification} className="nof-btn w-80 py-2 px-4 text-white rounded-md font">
         Send Notification
       </button>
-      <button className='text-white underline underline-offset-2' onClick={()=>setMssgBox(true)}>Write your own message</button>
+      <button className='text-white underline underline-offset-2' onClick={()=>setMssgBox(true)}>Customize</button>
     </div>
     </div>
 }
 
     {mssgBox && 
-      <div className='grid items-center m-auto items-center h-screen'>
-        <div className='flex flex-col items-center'>
+      <div className='grid items-center m-auto h-screen'>
+        <div className='flex flex-col m-auto w-2/4'>
+        <label htmlFor="title" className="text-white">Enter Title</label>
+        <input name='title' className='text-white my-4 border-2 py-2 px-3 border-white rounded-md' placeholder='Enter your title' onChange={(e)=>setTitle(e.target.value)}/>
         <label htmlFor="mssg" className="text-white">Your Message</label>
-        <input name='mssg' className='text-white w-2/4 my-4 border-2 py-2 px-3 border-white rounded-md' placeholder='Enter your message' onChange={(e)=>setMssg(e.target.value)}/>
+        <input name='mssg' className='text-white my-4 border-2 py-2 px-3 border-white rounded-md' placeholder='Enter your message' onChange={(e)=>setMssg(e.target.value)}/>
         <button className='bg-lime-700 py-2 px-4 text-white rounded-md' onClick={handleSave}>Save</button>
         </div>
       </div>
